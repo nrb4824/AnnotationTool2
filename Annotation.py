@@ -154,11 +154,11 @@ def main(vidfile: str, scale_factor: float, output_annotated=False, annotated_st
     tracking = False
 
     ############ Adjustable parameters ############
-    playback_speed = 1.0 # 1.0 is normal speed
+    playback_speed = 0.2 # 1.0 is normal speed
     search_radius = 30
-    confidence_threshold = 0.8
-    jump_frames = 30
-    sample_interval = 100
+    confidence_threshold = 0.75
+    jump_frames = 10
+    sample_interval = 50
     json_out_directory = "JsonOut"
     annotated_videos_directory = "AnnotatedVideos"
     ###############################################
@@ -176,6 +176,7 @@ def main(vidfile: str, scale_factor: float, output_annotated=False, annotated_st
     end_frame = None
     tracking_data = {}
 
+    #region Section1: Mouse and Trackbar Callbacks
     def handleMouse(event, x, y, flags, param):
         nonlocal playing, current_action, selected_template
         if not playing and current_action != "Change Template":
@@ -256,8 +257,9 @@ def main(vidfile: str, scale_factor: float, output_annotated=False, annotated_st
                     template_trackers[selected_template].set_start_hold()
                 elif current_action == "End Hold" and not playing:
                     template_trackers[selected_template].set_end_hold()
+    #endregion
 
-
+    #region Section2: Controls and gui setup
     cv.namedWindow("GUI", cv.WINDOW_NORMAL) # widnow for the video
     cv.namedWindow("Controls", cv.WINDOW_NORMAL) # all controls in this window to prevent resizing issues
 
@@ -272,7 +274,7 @@ def main(vidfile: str, scale_factor: float, output_annotated=False, annotated_st
     cv.createTrackbar("Radius", "Controls", search_radius, 500, lambda v: None)
     cv.createTrackbar("Jump", "Controls", jump_frames, 100, on_trackbar_jump)
     cv.createTrackbar("Actions", "Controls", 4, len(actions) - 1, on_trackbar_action)
-
+    #endregion
 
     last_time = time.time()
 
@@ -382,7 +384,8 @@ def main(vidfile: str, scale_factor: float, output_annotated=False, annotated_st
     route_color = input("Enter the color of the route: ")
     route_rating = input("Enter the grade of the route: ")
     climb_valid = input("Was the climb valid? Enter 'complete', 'fell', 'touch ground', or 'touch wrong hold': ")
-    climber_id = input("Enter the climber's ID (optional): ")
+    climber_id = input("Enter the climber's ID: ")
+    climb_id = input("Enter the climb ID: ")
 
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -391,6 +394,7 @@ def main(vidfile: str, scale_factor: float, output_annotated=False, annotated_st
         "timestamp": current_time,
         "fps": fps,
         "climber_id": climber_id,
+        "climb_id": climb_id,
         "total_frames": len(frames),
         "sample_interval": sample_interval,
         "number_of_holds": len(template_trackers),
@@ -418,4 +422,4 @@ def main(vidfile: str, scale_factor: float, output_annotated=False, annotated_st
 # output_annotated: bool - whether to output annotated video
 # annotated_stops: bool - whether to output includes all video pauses or not
 if __name__ == "__main__":
-    main("Data/Data1.MOV", 0.5, False, True)
+    main("Data/Data22.MOV", 0.5, True, False)
