@@ -223,21 +223,21 @@ def main():
     matrix_data = climber_rating_matrix.values
 
     # Plot
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(14, 6))
     plt.imshow(matrix_data, cmap='Purples', aspect='auto')
 
     # Set ticks with proper labels
-    plt.xticks(ticks=range(len(climber_rating_matrix.columns)), labels=climber_rating_matrix.columns, fontsize=20)
+    plt.xticks(ticks=range(len(climber_rating_matrix.columns)), labels=climber_rating_matrix.columns, fontsize=20, rotation=90)
     plt.yticks(ticks=range(len(climber_rating_matrix.index)), labels=climber_rating_matrix.index, fontsize=20)
 
     # Labels and title
-    plt.xlabel("Climber ID", fontsize=26, labelpad=20)
-    plt.ylabel("Route Rating", fontsize=26, labelpad=20)
-    plt.title("Route Ratings vs Climbers", fontsize=26, pad=20)
+    plt.xlabel("Climber ID", fontsize=30, labelpad=20)
+    plt.ylabel("Route Rating", fontsize=30, labelpad=20)
+    plt.title("Route Ratings vs Climbers", fontsize=30, pad=20)
 
     # Add colorbar
     cbar = plt.colorbar()
-    cbar.set_label('Number of Climbs', fontsize=26, labelpad=20)
+    cbar.set_label('Number of Climbs', fontsize=30, labelpad=20)
     cbar.ax.tick_params(labelsize=20)
 
     plt.tight_layout()
