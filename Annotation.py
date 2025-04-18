@@ -422,4 +422,4 @@ def main(vidfile: str, scale_factor: float, output_annotated=False, annotated_st
 # output_annotated: bool - whether to output annotated video
 # annotated_stops: bool - whether to output includes all video pauses or not
 if __name__ == "__main__":
-    main("Data/Data22.MOV", 0.5, True, False)
+    main("Data/Data83.MOV", 0.5, False, False)

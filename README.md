@@ -18,6 +18,9 @@ Run the following command to start the Annotation Tool:
 ```bash
 python main.py <video_path> <scale_factor>
 ```
+There are two optional arguments:
+- 'output_annotated': This is a boolean value on whether to output the annotated video. The default is False.
+- 'annotated_stops': This is a boolean value on whether the annotated video should include pauses. The default is False.
 
 This may take a minute to load. Once it has loaded there will be two screens, the control panel and the video.
 The video shows a crosshair. You can use this to draw bounding boxes. Once a bounding box is drawn, it will show up 
@@ -25,60 +28,60 @@ in the control pannel. Additionally the current action you are using is shown in
 action in the control pannel. The control pannel consists of tools to help you annotate the video. To apply an action to 
 a template you first select the action then click on the template in the control pannel. If you are on the New Template
 action you can freely click on templates in the control pannel. They will be highlighted in blue when selected.
-After annotating the video you must enter two text inputs: The color of the route and the grade of the route. There
-is an optional third for tracking climber id.
+After annotating the video you must enter four text inputs: The color of the route, the grade of the route, the climber id,
+and the climb id.
 
-### Actions
+## Actions
 
 
-#### Drawing a Template (New Template)
+### Drawing a Template (New Template)
 To draw a template, click and drag the mouse to create a rectangle. This will create a template that will be used to track the hold.
 
-#### Setting the End Hold (End Hold)
+### Setting the End Hold (End Hold)
 To set the end hold, make sure you are on the end hold action then click on the template in the control panel.
 The hold should turn green after you select a new template. You can undo this action by clicking on the template again
 while on the end hold action.
 
-#### Setting the Start Hold (Start Hold)
+### Setting the Start Hold (Start Hold)
 To set the start hold, make sure you are on the start hold action then click on the template in the control panel.
 The hold should turn green after you select a new template. You can undo this action by clicking on the template again
 while on the start hold action.
 
-#### Mark a Hold as Used (Hold Used)
+### Mark a Hold as Used (Hold Used)
 To mark a hold as used, make sure you are on the hold used action then click on the template in the control panel.
 The hold should turn yellow after you select another hold. You can undo this action by clicking on the template again while 
-on the hold used action.
+on the hold used action. You can also draw new templates while on this action. This was added for convenience while annotating.
 
-#### Changing a Template (Change Template)
+### Changing a Template (Change Template)
 To change a template, make sure you are on the change template action then click on the template in the control panel.
 This will allow you to redraw the template. After drawing the new bounding box you should see the new template reflected
 in the control panel. If you had already marked that hold as a start hold, end hold, or used hold, the new template will
 retain that information.
 
 
-### Control Panel
+## Control Panel
 The control panel consists of the following sliders:
 
-#### Width and Height
+### Width and Height
 These sliders allow you to adjust the width and height of the video. I will keep the aspect ratio
 as long as the video fits on your screen.
 
-#### Speed
+### Speed
 This slider allows you to adjust the speed of the video. You can't make the video faster but you can 
 slow it down.
 
-#### Confidence
+### Confidence
 This slider allows you to adjust the confidence of the bounding box. This is a threshold for similarity when
 doing the template matching. The higher the confidence the more similar the template must be to the bounding box.
 
-#### Radius
+### Radius
 This slider allows you to adjust the search radius for the template matching. This is the distance the template
 can move from the original bounding box (bounding boxes are calculated from the top-left).
 
-#### Jump
+### Jump
 This slider allows you to adjust the number of frames the video will jump when you press the next or previous button.
 
-#### Actions
+### Actions
 This slider allows you to select the action you want to perform on the templates. The actions are discussed above.
 
 
