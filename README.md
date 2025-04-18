@@ -1,9 +1,12 @@
-# BouleringDB Annotation Tool
+# 🧗‍♂️ BouleringDB Annotation Tool 🧗‍♀️
 
 ## Overview
 This Annotation Tool is designed to track holds of a video for bouldering. It uses OpenCV to track the bounding boxes of the holds.
 The tool allows you to draw bounding boxes around the holds and then track them throughout the video. All hold information 
 and other route related information will be saved to a json file.
+
+## Dataset
+The raw videos and annotated JSON files can be found here: [Dataset](https://github.com/nrb4824/BoulderingDBData).
 
 ## Installation
 Make sure to use Python 3.10 or lower. OpenCV is not compatible with new Python versions.
